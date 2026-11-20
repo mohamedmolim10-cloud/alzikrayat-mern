@@ -2,7 +2,6 @@
 
 export default function Navbar() {
   const navigate = useNavigate();
-  const token = localStorage.getItem('token');
   const user = JSON.parse(localStorage.getItem('user') || 'null');
 
   const handleLogout = () => {
@@ -13,19 +12,17 @@ export default function Navbar() {
 
   return (
     <nav className="navbar">
-      <Link to="/" className="brand">📸 الذكريات | Alzikrayat</Link>
+      <Link to="/" className="brand">Alzikrayat</Link>
       <div className="nav-links">
-        {token ? (
+        <Link to="/" className="btn-link">Home</Link>
+        <Link to="/gallery" className="btn-link">Gallery</Link>
+        {user ? (
           <>
-            <span className="welcome">مرحباً، {user?.username}</span>
-            <Link to="/" className="btn-link">ذكرياتي</Link>
-            <button onClick={handleLogout} className="btn-logout">تسجيل خروج</button>
+            <span className="welcome">Hi {user.firstName}</span>
+            <button onClick={handleLogout} className="btn-logout">Logout</button>
           </>
         ) : (
-          <>
-            <Link to="/login" className="btn-link">دخول</Link>
-            <Link to="/register" className="btn-primary">حساب جديد</Link>
-          </>
+          <Link to="/login" className="btn-primary">Please Login</Link>
         )}
       </div>
     </nav>

@@ -1,23 +1,23 @@
-﻿import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+﻿import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import Dashboard from './pages/Dashboard';
-import Login from './pages/Login';
-import Register from './pages/Register';
+import Home from './pages/Home';
+import Gallery from './pages/Gallery';
+import PhotoDetail from './pages/PhotoDetail';
+import LoginRegister from './pages/LoginRegister';
 import './App.css';
 
-function App() {
+export default function App() {
   return (
-    <Router>
+    <BrowserRouter>
       <Navbar />
       <main className="container">
         <Routes>
-          <Route path="/" element={<Dashboard />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/gallery" element={<Gallery />} />
+          <Route path="/photos/:id" element={<PhotoDetail />} />
+          <Route path="/login" element={<LoginRegister />} />
         </Routes>
       </main>
-    </Router>
+    </BrowserRouter>
   );
 }
-
-export default App;
